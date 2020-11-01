@@ -103,11 +103,35 @@ def home():
     return render_template("home.html",fname=fname,lab1=str(lab1),lab2=str(lab2))
 
 
-@app.route("/expa1")
+@app.route("/expa1", methods = ["GET", "POST"])
 @login_required
 def expa1():
-    return render_template("expa1.html")
-
+    if request.method == "GET":
+        return render_template("expa1.html")
+    else:
+        points=0
+        ans1 = int(request.form.get("qn1"))
+        ans2 = int(request.form.get("qn2"))
+        ans3 = int(request.form.get("qn3"))
+        ans4 = int(request.form.get("qn4"))
+        ans5 = int(request.form.get("qn5"))
+        if ans1 == 2:
+            points+=2
+        if ans2 == 3:
+            points+=2
+        if ans3 == 4:
+            points+=2
+        if ans4 == 1:
+            points+=2
+        if ans5 == 2:
+            points+=2
+        if points > 6:
+            db.execute("UPDATE users SET lab1=:lab1 WHERE id=:cid", lab1=1, cid=session["user_id"])
+            flash("You have successfully completed Experiment1 of Mechanical.")
+            return redirect("/home")
+        else:
+            flash("You did not score sufficient points, try again later.")
+            return redirect("/home")
 
 @app.route("/expa2")
 @login_required
