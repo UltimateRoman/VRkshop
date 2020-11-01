@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block main %}
+    {% if get_flashed_messages() %}
+    <br/><br/>
+    <div class="alert alert-primary border text-center" role="alert">
+        {{ get_flashed_messages() | join(" ") }}
+    </div>
+    {% endif %}
+    <section id="about" class="about">
+    <center>
+        <header class="section-header">
+            <h3>Create Your Account</h3>
+        </header>
+        <br/>
+        <form action="/register" method="post">
+            <div class="form-group">
+                <div class="form-group mx-sm-3 mb-2">
+                    <input autocomplete="off" autofocus class="form-control" name="fname" placeholder="Enter Your Fullname" type="text">
+                </div>
+                <br/>
+                <div class="form-group col-md-4">
+                    <label for="inputState">Semester</label>
+                    <select id="inputState" class="form-control" name="semester">
+                      <option value="1" selected>S1</option>
+                      <option value="2">S2</option>
+                      <option value="3">S3</option>
+                      <option value="4">S4</option>
+                    </select>
+                </div>
+                <br/>
+                <div class="form-group mx-sm-3 mb-2">
+                    <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Choose a Username" type="text">
+                </div>
+                <br/>
+                <div class="form-group mx-sm-3 mb-2">
+                    <input class="form-control" name="password" placeholder="Enter a Password" type="password">
+                </div>
+                <br/>
+                <div class="form-group mx-sm-3 mb-2">
+                    <input class="form-control" name="confirmpass" placeholder="Re-enter the Password" type="password">
+                </div>
+            </div>
+            <br/>
+            <button class="btn btn-primary" type="submit">Register</button>
+        </form>
+        <br/><br/>
+    </center>
+    </section>
+{% endblock %}

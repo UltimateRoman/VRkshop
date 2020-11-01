@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block main %}
+    {% if get_flashed_messages() %}
+    <br/><br/>
+    <div class="alert alert-primary border text-center" role="alert">
+        {{ get_flashed_messages() | join(" ") }}
+    </div>
+    <br/>
+    {% endif %}
+    <section id="about" class="about">
+    <center>
+        <header class="section-header">
+            <h3>Login</h3>
+        </header>
+        <br/>
+        <form action="/login" method="post">
+            <div class="form-group">
+                <div class="form-group mx-sm-3 mb-2">
+                    <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Enter Username" type="text">
+                </div>
+                <br/><br/>
+                <div class="form-group mx-sm-3 mb-2">
+                    <input class="form-control" name="password" placeholder="Enter Password" type="password">
+                </div>
+            </div>
+            <br/>
+            <button class="btn btn-primary" type="submit">Log In</button>
+        </form>
+        <br/><br/>
+        <p>or <a href="/register">create an account</a></p>
+    </center>
+    </section>
+{% endblock %}
